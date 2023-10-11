@@ -9,11 +9,10 @@ function App() {
   const calculateHandler = (userInput) => {
     // Should be triggered when form is submitted
     // You might not directly want to bind it to the submit event on the form though...
-    // userInput.preventDefault();
     console.log("From App.js:", userInput);
 
     // do something with yearlyData ...
-    setUserInput(yearlyData);
+    setUserInput(userInput);
   };
 
   const yearlyData = []; // per-year results
@@ -43,7 +42,15 @@ function App() {
       <UserInput onCalculate={calculateHandler} />
       {/* Todo: Show below table conditionally (only once result data is available) */}
       {/* Show fallback text if no data is available */}
-      <ResultsTable />
+
+      {!userInput && <p>No investment calculated yet.</p>}
+
+      {userInput && (
+        <ResultsTable
+          data={yearlyData}
+          initialInvestment={userInput["current-savings"]}
+        />
+      )}
     </div>
   );
 }

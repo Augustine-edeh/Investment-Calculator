@@ -1,21 +1,22 @@
 import { useState } from "react";
 import styles from "./UserInput.module.css";
 
-const UserInput = (props) => {
-  const initialuserInput = {
-    "current-savings": 10000,
-    "yearly-contribution": 1200,
-    "expected-return": 7,
-    duration: 10,
-  };
+const initialuserInput = {
+  "current-savings": 10000,
+  "yearly-contribution": 1200,
+  "expected-return": 7,
+  duration: 10,
+};
 
+const UserInput = (props) => {
   const [userInput, setUserInput] = useState(initialuserInput);
 
   const submitHandler = (event) => {
     event.preventDefault();
 
     props.onCalculate(userInput);
-    console.log("SUBMIT");
+
+    // console.log("SUBMIT");
   };
 
   const resetHandler = (event) => {
@@ -30,10 +31,15 @@ const UserInput = (props) => {
     setUserInput((prevInput) => {
       return {
         ...prevInput,
-        [input]: value,
+        [input]: +value,
       };
     });
   };
+
+  // const calculateHandler = (event) => {
+  //   event.preventDefault();
+  //   props.onCalculate(userInput);
+  // };
 
   return (
     <form className={styles.form} onSubmit={submitHandler}>
@@ -95,7 +101,11 @@ const UserInput = (props) => {
         >
           Reset
         </button>
-        <button type="submit" className={styles.button}>
+        <button
+          type="submit"
+          className={styles.button}
+          // onClick={calculateHandler}
+        >
           Calculate
         </button>
       </p>
