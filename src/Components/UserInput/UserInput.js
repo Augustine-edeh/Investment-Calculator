@@ -15,19 +15,13 @@ const UserInput = (props) => {
     event.preventDefault();
 
     props.onCalculate(userInput);
-
-    // console.log("SUBMIT");
   };
 
   const resetHandler = (event) => {
-    // console.log("RESET");
-    // event.preventDefault();
     setUserInput(initialuserInput);
   };
 
   const inputChangeHandler = (input, value) => {
-    // console.log(input, value);
-
     setUserInput((prevInput) => {
       return {
         ...prevInput,
@@ -35,11 +29,6 @@ const UserInput = (props) => {
       };
     });
   };
-
-  // const calculateHandler = (event) => {
-  //   event.preventDefault();
-  //   props.onCalculate(userInput);
-  // };
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
@@ -101,11 +90,7 @@ const UserInput = (props) => {
         >
           Reset
         </button>
-        <button
-          type="submit"
-          className={classes.button}
-          // onClick={calculateHandler}
-        >
+        <button type="submit" className={classes.button}>
           Calculate
         </button>
       </p>
